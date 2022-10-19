@@ -56,3 +56,106 @@ O(n<sup>2</sup> + 5n + 8) &rarr; O(n<sup>2</sup>)
 2. Variable assignments are constant.
 3. Accessing elements in an array (by index) or object (by key) is constant.
 4. In a loop, the complexity is the length of the loop times the complexity of whatever happens inside the loop.
+
+## Space Complexity
+
+### Rules of thumb
+
+- Most primitives (booleans, numbers, undefined, null) are constant space.
+- Strings require O(n) space (n is the string length).
+- Reference types are generally O(n), where n is the length (for arrays) or the number of keys (for objects).
+
+### Examples
+
+```js
+function um(arr) {
+   let total = 0;
+   for (let i =0; i<arr.length;i++){
+    total += arr[i];
+   }
+   return total
+}
+```
+In this function, no matter how big *arr* is, there are only two numbers: *total* and *i*. </br>
+&rarr; O(1) space is needed for this function.
+
+```js
+function double(arr) {
+   let newArr = [];
+   for (let i =0; i<arr.length;i++){
+    newArr.push(2*arr[i]);
+   }
+   return newArr
+}
+```
+In this function the *newArr* grows in proportion to the input. </br>
+&rarr; O(n) space is needed for this function.
+
+## Big O and logarithms
+
+Sometimes big O expressions involve more complex mathematical expressions, one of which are logarithms.</br>
+log<sub>2</sub>(8) = 3 </br>
+2<sup>3</sup> = 8 </br>
+Logarithmic time complexities, for example **O(log(n))** are way more favorable than **O(n)** because of their behavior when n increases.
+
+## But why should I care?
+- Some searching algorithms have logarithmic time complexity.
+- Efficient sorting algorithms involve logarithms.
+- Sometimes Recursion involves logarithmic space complexity.
+
+## Big O of objects
+
+| Operation | Time complexity |
+| --- | --- |
+| insertion | O(1) |
+| removal | O(1) |
+| searching | O(n) |
+| access | O(1) |
+
+Objects are a good choice, when you don't need ordering. 
+
+### Big O of object methods
+
+| Method | Time complexity |
+| --- | --- |
+| Object.**keys** | O(n) |
+| Object.**values** | O(n) |
+| Object.**entries** | O(n) |
+| **hasOwnProperty** | O(1) |
+
+## Big O of arrays
+
+### When should I use an array?
+
+- when you need an order in your data
+- when you need fast insertion/removal (sort of..)
+
+| Operation | Time complexity |
+| --- | --- |
+| insertion | It depends... |
+| removal | It depends... |
+| searching | O(n) |
+| access | O(1) |
+
+**Insertions:**</br>
+When *adding* an element...</br>
+&nbsp;&nbsp;&nbsp;&nbsp;...to the **end** of an array, time complexity is **O(1)**.</br>
+&nbsp;&nbsp;&nbsp;&nbsp;...to the **beginning** of an array, time complexity is **O(n)**.</br>
+
+When *removing* an element...</br>
+&nbsp;&nbsp;&nbsp;&nbsp;...from the **beginning** of an array, time complexitxy is **O(n)**.</br>
+&nbsp;&nbsp;&nbsp;&nbsp;...from the **end** of an array, time complexity is **O(1)**.
+
+### Big O of array methods
+
+| Method | Time complexity |
+| --- | --- |
+| pop | O(1) |
+| push | O(1) |
+| shift | O(n) |
+| unshift | O(n) |
+| concat | O(n) |
+| slice | O(n) |
+| splice | O(n) |
+| sort | O(n*log(n)) |
+| forEach/map/reduce/filter etc. | O(n) |
