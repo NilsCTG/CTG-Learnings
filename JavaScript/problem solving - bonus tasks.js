@@ -151,3 +151,75 @@ maxSubarraySum([-3,4,0,-2,6,-1], 2) // 5
 maxSubarraySum([3,-2,7,-4,1,-1,4,-2,1],2) // 5
 maxSubarraySum([2,3], 3) // null */
 
+/**
+ * Write a function called minSubArrayLen which accepts two parameters - an array of positive integers and a positive integer.
+ * This function should return the minimal length of a contiguous subarray of which the sum is greater than or equal to the integer passed to the function. If there isn't one, return 0 instead.
+ * Time Complexity: O(n)
+ * Space Complexity: O(1)
+ * @param {array} arr 
+ * @param {int} num 
+ * @returns the smallest contigous subarray which sums u to greater than or equal to a given number if found, otherwise 0
+ */
+function minSubArrayLen(arr,num){
+    let i = 0;
+    let j = 1;
+    let window = 0;
+    let minLen = 0;
+    if (arr.length < 1) return 0;
+    if (arr[i] >= num) return 1;
+    window = arr[i]+arr[j];
+    while (j < arr.length) {
+        if(window >= num) {
+            if (minLen !== 0){
+                minLen = Math.min(minLen,j-i+1);
+            } else {
+                minLen = j-i+1;
+            }
+            window -= arr[i];
+            i++;
+        } else {
+            j++;
+            window += arr[j];
+        }
+    }
+    if (minLen === null) return 0;
+    return minLen
+}
+//minSubArrayLen([2,3,1,2,4,3], 7) // 2 -> because [4,3] is the smallest subarray
+
+/**
+ * Write a function called findLongestSubstring, which accepts a string and returns the length of the longest substring with all distinct characters.
+ * Time complexity: O(n)
+ * @param {string} str 
+ * @returns longest substring
+ */
+function findLongestSubstring(str){
+    let count ={};
+    let start = 0;
+    let end = 0;
+    let next = 1;
+    let maxLength = 1;
+    let currLength = 1;
+    if (str.length < 1) return 0;
+    if (str.length === 1) return 1;
+    
+    count[str[start]] = 0;
+    
+    while (next < str.length){
+        if(count[str[next]]!== undefined && count[str[next]] >= start){
+            maxLength = Math.max(maxLength,currLength);
+            start = count[str[next]]+1;
+            end++;
+            currLength = end-start+1;
+            count[str[end]]= end;
+        } else {
+            end++;
+            currLength++;
+            count[str[end]] = end;
+        }
+        next++;
+    }
+    maxLength = Math.max(maxLength,currLength);
+    return maxLength;
+}
+//findLongestSubstring('thisisawesome') // 6
