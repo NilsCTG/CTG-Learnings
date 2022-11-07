@@ -109,7 +109,7 @@ Logarithmic time complexities, for example **O(log(n))** are way more favorable 
 | --- | --- |
 | insertion | O(1) |
 | removal | O(1) |
-| searching | O(n) |
+| searching | O(*n*) |
 | access | O(1) |
 
 Objects are a good choice, when you don't need ordering. 
@@ -118,9 +118,9 @@ Objects are a good choice, when you don't need ordering.
 
 | Method | Time complexity |
 | --- | --- |
-| Object.**keys** | O(n) |
-| Object.**values** | O(n) |
-| Object.**entries** | O(n) |
+| Object.**keys** | O(*n*) |
+| Object.**values** | O(*n*) |
+| Object.**entries** | O(*n*) |
 | **hasOwnProperty** | O(1) |
 
 ## Big O of arrays
@@ -134,7 +134,7 @@ Objects are a good choice, when you don't need ordering.
 | --- | --- |
 | insertion | It depends... |
 | removal | It depends... |
-| searching | O(n) |
+| searching | O(*n*) |
 | access | O(1) |
 
 **Insertions:**</br>
@@ -152,10 +152,10 @@ When *removing* an element...</br>
 | --- | --- |
 | pop | O(1) |
 | push | O(1) |
-| shift | O(n) |
-| unshift | O(n) |
-| concat | O(n) |
-| slice | O(n) |
-| splice | O(n) |
-| sort | O(n*log(n)) |
-| forEach/map/reduce/filter etc. | O(n) |
+| shift | O(*n*) |
+| unshift | O(*n*) |
+| concat | O(n*n*) |
+| slice | O(*n*) |
+| splice | O(*n*n) |
+| sort | O(*n* nlog(*n*)) |
+| forEach/map/reduce/filter etc. | O(*n*) |
